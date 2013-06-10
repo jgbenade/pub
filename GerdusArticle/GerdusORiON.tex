@@ -1,0 +1,277 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{ORiONeng,epsfig}
+\usepackage{latexsym,amssymb,epsfig,graphicx,subfigure,rotating,multirow,colortbl,xcolor,amsmath,booktabs}
+ \usepackage{subfig}
+ 
+%%%%% This is important for the page layout %%%%%
+ 
+\setlength{\parskip}{2pt}
+\setlength{\parsep}{2pt}
+\setlength{\headsep}{10pt}
+\setlength{\topskip}{2pt}
+\setlength{\topmargin}{5pt}
+\setlength{\topsep}{5pt}
+\setlength{\partopsep}{2pt}
+
+
+\textwidth 178mm
+\textheight 266mm
+\voffset -18mm
+\oddsidemargin -7mm
+\evensidemargin -7mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\newcommand{\blokkie}{\hspace{.07cm}\Box\hspace{.07cm}}
+
+%%%%% Set up the coloured tables %%%%%
+\colorlet{tableheadcolor}{gray!25} % Table header colour = 25% gray
+\colorlet{tablerowcolor}{gray!10} % Table row separator colour = 10% gray
+\newcommand{\headcol}{\rowcolor{tableheadcolor}}
+\newcommand{\rowcol}{\rowcolor{tablerowcolor}}
+
+% The top-most line of a table
+\newcommand{\topline}{\arrayrulecolor{black}\specialrule{0.1em}{\abovetopsep}{0pt}%
+	\arrayrulecolor{tableheadcolor}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}}
+	
+	% The top-most line of a table
+\newcommand{\toplinee}{\arrayrulecolor{black}\specialrule{0.1em}{\abovetopsep}{0pt}%
+	\arrayrulecolor{tablerowcolor}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}}
+            
+% The line between the headings and the table body
+\newcommand{\midline}{\arrayrulecolor{tableheadcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}\specialrule{\lightrulewidth}{0pt}{0pt}%
+	\arrayrulecolor{white}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}}
+	
+% A line for when the upper row is rowcolor and the next line is white
+\newcommand{\midlinecbw}{\arrayrulecolor{tablerowcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}\specialrule{\lightrulewidth}{0pt}{0pt}%
+ 	\arrayrulecolor{white}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}}
+	
+% A line with no black, to further separate a rowcolor row and a white row
+\newcommand{\midlinecw}{\arrayrulecolor{tablerowcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{tablerowcolor}\specialrule{\lightrulewidth}{0pt}{0pt}%
+	\arrayrulecolor{white}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}}
+	
+% A line for when the upper row is white and the next line is rowcolor
+\newcommand{\midlinewbc}{\arrayrulecolor{white}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}\specialrule{\lightrulewidth}{0pt}{0pt}%
+	\arrayrulecolor{tablerowcolor}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}} 
+	
+% sadfsdfsdf sdfsdfsdf 
+\newcommand{\midlinehr}{\arrayrulecolor{tablerowcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}\specialrule{\lightrulewidth}{0pt}{0pt}%
+	\arrayrulecolor{tableheadcolor}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{tablerowcolor}}
+	
+	
+% A line for the bottom of the table, when the last row is white
+\newcommand{\bottomline}{\arrayrulecolor{white}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}\specialrule{\heavyrulewidth}{0pt}{\belowbottomsep}}%
+	
+% A line for the bottom of the table, when the last row is rowcolor
+\newcommand{\bottomlinec}{\arrayrulecolor{tablerowcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}\specialrule{\heavyrulewidth}{0pt}{\belowbottomsep}}%
+
+\newcommand{\bottomlinect}{\arrayrulecolor{tableheadcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{black}\specialrule{\heavyrulewidth}{0pt}{\belowbottomsep}}%
+%%%%% Set up the coloured tables %%%%%
+
+
+
+
+
+
+
+
+\title{{\vspace{-0.5cm}}A Binary Programming Approach towards Achieving Effective Network Protection}
+
+\author{AP Burger$^\dagger$, AP de Villiers$^\dagger$ \& JH van Vuuren\thanks{Department of Logistics, Stellenbosch University, Private Bag X1, Matieland, 7602, South Africa, fax: +27 21 808 3406, emails: {\tt apburger@sun.ac.za}, {\tt 14812673@sun.ac.za} and {\tt vuuren@sun.ac.za}}}
+
+\shorttitle{A Binary Programming Approach towards Achieving Effective Network Protection}
+
+\shortauthor{AP Burger, AP de Villiers \& JH van Vuuren}
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract} In this paper we adopt an integer programming approach towards computing five NP-hard parameters which frequently appear in the graph theoretic literature on the protection or safeguarding of networks.  These parameters are the domination number, the total domination number, the Roman domination number, the weak Roman domination number and the secure domination number of a network. In applications the vertices of the network denote physical entities that are typically geographically dispersed and which have to be secured or monitored, while the network edges model links between these entities along which patrolling guards stationed at the vertices may monitor entities or move to entities in order to resolve security threats that may occur at the entities.  The five parameters mentioned above represent the minimum number of guards required to protect the entire network of entities under different conditions ({\em i.e.}\ for different definitions of the notion of ``protection").
+
+We investigate the effectiveness of an integer programming approach towards determining these parameters for small networks (with at most 99 vertices), medium-sized networks (with between 100 and 999 vertices) and large networks (1\,000 vertices or more). The first three parameters above are classified as being applicable in a static protection framework, while the latter two apply to dynamic protection strategies.  It is found that the three static parameters may be computed within a reasonable time for small and medium-sized networks by a state-of-the-art commercial integer programming solvers, while the two dynamic parameters may thus be computed within a reasonable time for small networks only. For large networks more sophisticated solution approaches ({\em e.g.}\ column generation or (approximate) metaheuristic solution approaches) are required to determine upper bounds an all five parameters.
+  \end{abstract}
+  %\vspace{1.5cm}
+ 
+\section{Introduction}
+During the fourth century A.D., the Roman Empire had a total of twenty five legions at its disposal to defend its territories. Each legion consisted of various infantry and cavalry units \cite{luttwak}.  A grouping of six legions, called a {\em field army}, was deemed sufficient to secure any one of the eight regions represented by the vertices of the network $\Xi$ superimposed on the map of the Empire in Figure \ref{romanmap}. Emperor Constantine the Great (274--337 A.D.) therefore commanded four field armies and had to decide how to deploy these field armies.  The Emperor considered a deployment capable of securing the entire Empire if every one of its eight regions was either occupied by a field army or was directly adjacent to a region occupied by two field armies \cite{peterson}, where adjacency is indicated by the edges of the network $\Xi$ in Figure \ref{romanmap} (these edges represented deployment routes at the time).  Constantine's reasoning was that two field armies had to be stationed in a region 
+before one would be allowed to move to a neighbouring, unoccupied region in order to deal with an internal uprising or external defence challenge there, so as to ensure that the region vacated by the moving field army could not be attacked successfully by an enemy.
+ 
+
+
+A very natural variation on the theme of domination is that of {\em total domination}, introduced by Cockayne {\em et al.}\ \cite{cockayne3} in 1980.  A {\em total dominating set} of a graph $G$ is a subset $X_t$ of the vertex set of $G$, where $X_t$ represents those vertices of $G$ that receive one guard each, with the property that {\em every} vertex of $G$ should be adjacent to at least one vertex in $X_t$ ({\em i.e.}\ in addition to the set being dominating, every guard should also be adjacent to at least one other guard). The {\em total domination number} of $G$, denoted by $\gamma_t(G)$, is the minimum value of $|X_t|$, taken over all total dominating sets $X_t$ of $G$ ({\em i.e.}\ the smallest number of guards that can possibly form a total dominating set of $G$). A total dominating set of smallest cardinality for the network $\Xi$ in Figure~\ref{romanmap} is shown in Figure~\ref{deployments}(d), from which it follows that $\gamma_t(\Xi)=3$. The notion of total domination was inspired by policing and 
+monitoring applications where the set $X_t$ represents vertices at which guards are placed, but with the additional requirement that each guard should himself also be monitored by at least one other guard for auditing purposes in an attempt at safeguarding against corruption of the guards. 
+ 
+Constantine's defence strategy of the Roman Empire has inspired yet another variation on the concept of domination.  A {\em Roman dominating set} of a graph $G$ is a pair $(X_R,Y_R)$ of mutually exclusive subsets of the vertex set of $G$, where $X_R$ represents those vertices of $G$ that receive one guard each and where $Y_R$ represents those vertices of $G$ that receive two guards each, with the property that each vertex which is neither in $X_R$ nor in $Y_R$ should be adjacent to at least one vertex in $Y_R$. The {\em Roman domination number} of $G$, denoted by $\gamma_R(G)$, is the minimum value of $|X_R|+2|Y_R|$, taken over all Roman dominating sets $(X_R,Y_R)$ of $G$ ({\em i.e.}\ the smallest number of guards that can possibly form a Roman dominating set of $G$).  It is not difficult to show that $\gamma_R(\Xi)=4$, {\em i.e.}\ that the Roman defence strategy in Figure \ref{deployments}(b) is best possible.  The notion of Roman domination in graphs has been studied by various authors \cite{cockayne2,
+cockayne1,revelle,stewart}.
+ 
+Under the assumption that no two regions of the Roman Empire would be attacked simultaneously, Emperor Constantine could have defended the empire using even fewer than four of his thinly stretched field armies.  This observation led Henning and Hedetniemi \cite{henning} to introduce the notion of {weak Roman domination} in 2003.  A {\em weak Roman dominating set} of a graph $G$ is a pair $(X_r,Y_r)$ of mutually exclusive subsets of the vertex set of $G$, where $X_r$ again represents those vertices of $G$ that receive one guard each and where $Y_r$ again represents those vertices of $G$ that receive two guards each, but with the property that $X_r\cup Y_r$ forms a dominating set of $G$ and additionally, for each vertex $u$ in neither $X_r$ nor $Y_r$, there exists a vertex $v\in X_r$ such that the {\em swap set} $((X_r\cup\{u\})-\{v\})\cup Y_r$ is again a dominating set of $G$, or a vertex $v\in Y_r$ such that the {\em swap set} $(Y_r-\{v\})\cup (X_r\cup \{u,v\})$ is again a dominating set of $G$. The notion 
+of a swap set models the situation where a guard moves from a single occupied vertex $v$ or a doubly occupied vertex $v'$ to an unoccupied vertex $u$ in order to deal with a problem at $u$, but leaving the resulting configuration a dominating set of $G$ again.  The {\em weak Roman domination number} of $G$, denoted by $\gamma_r(G)$, is the minimum value of $|X_r|+2|Y_r|$, taken over all weak Roman dominating set pairs $(X_r,Y_r)$ of $G$ ({\em i.e.}\ the smallest number of guards that can possibly form a weak Roman dominating set of $G$).  The minimum total dominating set in Figure~\ref{deployments}(d) is incidently also a weak Roman dominating set of minimum cardinality for the network $\Xi$ in Figure~\ref{romanmap}. To see this, note that the guard at $v_2$ (field army in Gaul) is able to move to either of the vertices $v_1$ or $v_8$ (Britain or Iberia) if a security threat were to occur there. The guard at $v_3$ (field army in Rome) can similarly defend the unoccupied vertex $v_2$ (North Africa), while the 
+guard at $v_4$ (field army in Constantinople) can defend the unoccupied vertices $v_5$ or $v_6$ (Asia Minor or Egypt). It is not too difficult to show that the weak Roman dominating set in Figure~\ref{deployments}(d) is best possible and hence that $\gamma_r(\Xi) =3$. Note that a total dominating set of a graph $G$ is not always a weak Roman dominating set of $G$; it is a mere coincidence for the network $\Xi$.
+
+\begin{figure}[tb]
+ 
+\begin{center} 
+\begin{tabular}{cccc}
+		\includegraphics[scale=1]{Roman1.pdf}	&		\includegraphics[scale=1]{Roman2.pdf}&		\includegraphics[scale=1]{Roman3.pdf}&		\includegraphics[scale=1]{Roman4.pdf}	\\
+		\footnotesize(a)	&	\footnotesize(b)&	\footnotesize(c)&	\footnotesize(d)\\
+	\end{tabular}
+
+\end{center}
+ 
+%\vspace{-0.5cm}
+ 
+\caption{(a) Emperor Constantine's defence strategy was to station two field armies in Rome and two in Constantinople. (b) A better defence strategy, avoiding the sacrifice of Britain. (c) A dominating set of minimum cardinality for the graph $\Xi$. (d) Both a weak Roman and secure dominating set of minimum cardinality for the graph $\Xi$. In all cases $v_1 \equiv$ Britain, $v_2 \equiv$ Gaul, $v_3 \equiv$ Rome, $v_4 \equiv$ Constantinople, $v_5 \equiv$ Asia Minor, $v_6 \equiv$ Egypt, $v_7 \equiv$ North Africa, $v_8 \equiv$ Iberia. Furthermore, $\circ \equiv$ unoccupied vertex, $\bullet \equiv$ vertex occupied by one guard or field army and $\blacksquare \equiv$ vertex occupied by two guards or field armies.} \label{deployments} \end{figure}
+
+
+
+
+
+\section{Binary programming problem formulations}
+Let $G$ be a graph of order $n$ with vertex set $V(G) = \{v_1,\ldots,v_n\}$. Furthermore, suppose the entry in row $i$ and column $j$ of the adjacency matrix of $G$ is denoted by $a_{ij}$ for all $i \neq j$, with the convention that $a_{ii}=1$ for all $i=1,\ldots,n$. 
+
+
+\subsection{Formulations for the static domination problems}
+
+Let $X$ be the set of vertices containing exactly one guard and let $Y$ be the set of vertices containing two guards (when applicable) in the five computation problems described in the introduction. Define the binary decision variables 
+\begin{equation}
+x_i = \left\{
+\begin{array}{rl}
+1 & \text{if } v_i \in X\\
+0 & \text{otherwise} 
+\end{array} \right.
+\ \ \    \text{ and } \ \ \ 
+y_{i} = \left\{
+\begin{array}{rl}
+1 &\text{if } v_i \in Y\\
+0 & \text{otherwise} 
+\end{array} \right.\label{Math:Binary}
+\end{equation}
+for all $i =1,\ldots,n$.
+
+\subsubsection{Domination}
+
+
+The problem of computing a dominating set of minimum cardinality for $G$ may be formulated as a binary program in which the objective is to
+\begin{align}
+\text{minimise }\ z=\sum_{i=1}^n x_i
+\end{align}
+subject to the constraints
+\begin{align}
+\sum_{j=1}^n a_{ij}x_j &\geq 1, \hspace{1.14cm}\begin{array}{l}i=1,\ldots,n.\end{array}\label{Dom:1}
+ \end{align}
+Constraint set (\ref{Dom:1}) ensures that each vertex of $G$ is adjacent to at least one vertex in the set $X$.
+
+\subsection{Formulation characteristics}
+
+The formulations of the three static parameters require significantly fewer variables and constraints than the formulations for the two dynamic parameters for any graph, as shown in Table~\ref{tab:charac}. 
+
+ \begin{table}[h]
+	\centering\footnotesize
+		\begin{tabular}{ccccrccrccccccccccccccccc}
+    \topline    \headcol
+   \S&Problem&Variables&Constraints \\\midline
+  3.1.1& Domination&$n$&$n$\\\rowcol
+  3.1.2& Total domination&$n$&$2n$\\
+  3.1.3& Roman domination&$2n$&$2n$\\\rowcol
+  3.2.1&Weak Roman domination & $n^2 +2n$& $n^3 + n^2 + 3n$\\
+  3.2.2& Secure domination & $n^2 +n$&$n^3  + n^2 + 2n$\\ 
+ 	\bottomline
+
+		\end{tabular}
+\vspace{0.5cm}
+	\caption{The number of variables and constraints in the problem formulations of \S3.1--\S3.2 for a graph of order $n$.}
+	\label{tab:charac}
+\end{table}
+
+
+\section{Conclusion}
+
+Binary programming formulations were presented in this paper for computing five parameters related to the protection of a network.  The five network protection paradigms considered were classified as being either static (domination, total domination and Roman domination) or dynamic (weak Roman and secure domination). The formulations for both the static and dynamic domination problems were presented in \S3, followed by a brief discussion on the characteristics of these formulations. Numerical test results were established in \S4 for the families of square grid graphs in the plane and hexagonal graphs. Using a state-of-the-art binary solver (CPLEX) on a relatively fast computing platform, it was found that the static parameters may be found within a reasonable timeframe for graphs of order at most $1\,000$, while the dynamic parameters can only be found for graphs of order at most $100$. 
+
+Further work may include adopting a more sophisticated exact solution approach ({\em e.g.}\ a column generation approach or the addition of valid inequalities) to find the values of the parameters for graphs of order more than $1\,000$ or to adopt an approximate solution approach ({\em e.g.}\ a local search or metaheuristic, such as those by Caprara {\em et al.}~\cite{CapraraTothFischetti2000} and Yagiura {\em et al.}~\cite{YagiuraKishidaIbaraki2006} for the set cover problem) in order to establish good upper bounds on the values of the parameters.
+
+{\footnotesize
+
+\begin{thebibliography}{10}
+
+\bibitem{berge} {\sc C Berge}, 1962. {\em Theory of graphs and its applications}, Methuen, London, 40--51.
+ 
+\bibitem{burger1} {\sc AP Burger, EJ Cockayne, WR Gr\"undlingh, CM Mynhardt, JH van Vuuren \& W Winterbach}, 2004. {\em Finite order domination in graphs}, Journal of Combinatorial Mathematics and Combinatorial Computing, {\bf 49}, 159--175.
+ 
+\bibitem{burger2} {\sc AP Burger, EJ Cockayne, WR Gr\"undlingh, CM Mynhardt, JH van Vuuren \& W Winterbach}, 2004. {\em Infinite order domination in graphs}, Journal of Combinatorial Mathematics and Combinatorial Computing, {\bf 50}, 179--194.
+ 
+\bibitem{onstrees} {\sc AP Burger, AP de Villiers \& JH van Vuuren}, {\em A linear algorithm for secure domination in trees}, Submitted.
+ 
+\bibitem{onsgen} {\sc AP Burger, AP de Villiers \& JH van Vuuren}, 2013. {\em Two algorithms for secure graph domination}, Journal of Combinatorial Mathematics and Combinatorial Computing, To appear.
+
+\bibitem{GIS} {\sc PA Burrough \& RA McDonnell}, 1998. {\em Principles of geographical information systems}, Oxford University Press, Oxford.
+
+\bibitem{Ubuntu}{{\sc Canonical}, 2004. {\em Ubuntu Edition: Version 10.04}, [Online], [Cited April 15\textsuperscript{th}, 2013], Available from {\tt http://www.canonical.com/}.}
+
+\bibitem{CapraraTothFischetti2000} {\sc A Caprara, P Toth \& M Fischetti}, 2000. {\em Algorithms for the set covering problem}, Annals of Operations Research, {\bf 98}, 353--371. 
+ 
+\bibitem{cockayne3} {\sc EJ Cockayne, RM Dawes \& ST Hedetniemi}, 1980. {\em Total domination in graphs}, Networks, {\bf 10}, 211--219.
+ 
+\bibitem{cockayne1} {\sc EJ Cockayne, PA Dreyer, SM Hedetniemi \& ST Hedetniemi}, 2004. {\em Roman domination in graphs}, Discrete Mathematics, {\bf 278}, 11--22.
+ 
+\bibitem{cockayne2} {\sc EJ Cockayne, PJP Grobler, WR Gr\"undlingh, J Munganga \& JH van Vuuren}, 2005. {\em Protection of a graph}, Utilitas Mathematica, {\bf 67}, 19--32.
+
+\bibitem{cplex} {\sc IBM ILOG CPLEX Optimization Studio}, 2012. {\em CPLEX Edition: Version 12.5}, [Online], [Cited April 15\textsuperscript{th}, 2013], Available from {\tt http://www-01.ibm.com/software/commerce/optimization/cplex-optimizer/}.
+ 
+\bibitem{garey} {\sc MR Garey \& DS Johnson}, 1979. {\em Computers and intractability: A guide to the theory of NP-completeness}, Freeman, New York (NY).
+ 
+\bibitem{haynes1} {\sc TW Haynes, ST Hedetniemi \& PJ Slater}, 1997. {\em Fundamentals of domination in graphs}, Marcel Dekker, New York (NY).
+ 
+\bibitem{haynes2} {\sc TW Haynes, ST Hedetniemi \& PJ Slater}, 1997. {\em Domination in graphs: Advanced topics}, Marcel Dekker, New York (NY).
+ 
+\bibitem{henning} {\sc MA Henning \& ST Hedetniemi}, 2003. {\em Defending the Roman Empire --- A new strategy}, Discrete Mathematics, {\bf 266}, 239--251.
+
+\bibitem{TotalDomTree} {\sc R Laskar, J Pfaff, SM Hedetniemi \& ST Hedetniemi}, 1984. {\em  On the Algorithmic Complexity of Total Domination}, Algebraic and Discrete Methods, {\bf 5(3)}, 420--425.
+ 
+\bibitem{luttwak} {\sc EN Luttwak}, 1976. {\em The grand strategy of the Roman Empire}, Johns Hopkins University Press, Baltimore (MD).
+ 
+\bibitem{mitchell} {\sc SL Mitchell, EJ Cockayne \& ST Hedetniemi}, 1979. {\em Linear algorithms in recursive representations of trees}, Journal of Computer and System Sciences, {\bf 18}, 76--85.
+ 
+\bibitem{ore} {\sc O Ore}, 1962. {\em Theory of graphs}, American Mathematical Society, Colloquium Publications, Providence (RI).
+
+\bibitem{wargames} {\sc PP Perla}, 1990. {\em The art of wargaming}, Naval Institute Press, Annapolis (MD). 
+ 
+\bibitem{peterson} {\sc I Peterson}, 2000. {\em Math Trek: Defending the Roman Empire}, Science News Online, September 9\textsuperscript{th}, [Online], [Cited 2013, January 3\textsuperscript{rd}], Available from: {\tt http://www.sciencenews.org/view/generic/id/837/description/Defending\underline{ }the\underline{ }RomanEmpire}.
+ 
+\bibitem{revelle} {\sc CS Revelle \& KE Rosing}, 2000. {\em Defendes imperium Romanum: A classical problem in military strategy}, American Mathematical Monthly, {\bf 107(7)}, 585--594.
+
+\bibitem{TotalDomGrid} {\sc N Soltankhah}, 2010. {\em Results on Total Domination and Total Restrained Domination in Grid Graphs}, International Mathematical Forum, {\bf 5}, 319--332. 
+ 
+\bibitem{stewart} {\sc I Stewart}, 1999. {\em Defend the Roman Empire!}, Scientific American, December Issue, 136--138.
+
+\bibitem{DPSTC} {\sc R Tarjan}, 1972. {\em Depth-first search and linear graph algorithms}, Journal of Computing, {\bf 1(2)}, 146--160.
+
+\bibitem{USCP} {\sc C Toregas, R Swain, C ReVelle \& L Bergman}, 1971. {\em The Location of Emergency Service Facilities}, Operations Research, {\bf 19(6)}, 1363--1373.
+ 
+\bibitem{vanrooij}{\sc JMM van Rooij \& HL Bodlaender}, 2011. {\em Exact algorithms for dominating set}, Discrete Applied Mathematics, {\bf 159}, 2147--2164.
+
+\bibitem{YagiuraKishidaIbaraki2006}{\sc M Yagiura, M Kishida \& I Ibaraki}, 2006, {\em A 3-flip neighborhood local search for the set covering problem}, European Journal of Operational Research, {\bf 172}, 472--499.
+
+
+\end{thebibliography}}
+
+\end{document}

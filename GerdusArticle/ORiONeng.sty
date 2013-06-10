@@ -1,0 +1,252 @@
+\typeout{Stylblad vir voorlegging van artikels in ORiON:  01/01/2004}
+
+%Definieer omgewings
+\newtheorem{theorem}{Theorem}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{heuristic}[theorem]{Heuristic}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+%Stel die bladsygrootte
+\oddsidemargin 0mm
+\evensidemargin 10mm
+\topmargin -7mm
+\headsep 0.4cm
+\footskip 0.6cm
+\textwidth 150mm
+%\advance\textwidth -2in
+%\advance\textwidth -\oddsidemargin
+%\advance\textwidth -\evensidemargin
+\textheight 220mm
+%\advance\textheight -2in
+%\advance\textheight -\footskip
+\parskip 2mm plus 1pt
+
+
+%Maak die artikel tweekantig
+\@twosidetrue \@mparswitchtrue
+
+%Maak artikel een kolom
+\onecolumn
+
+%Geen indent
+\parindent 0mm
+
+%Inligting op die eerste bladsy
+%Datum ontvang, hersien en aanvaar.
+\def\volume#1{\gdef\@volume{#1}}
+\def\vnumber#1{\gdef\@vnumber{#1}}
+\def\pages#1{\gdef\@pages{#1}}
+\def\received#1{\gdef\@received{#1}}
+\def\revised#1{\gdef\@revised{#1}}
+\def\accepted#1{\gdef\@accepted{#1}}
+\def\taal#1{\gdef\@taal{#1}}
+
+\newcommand{\datesRRA}{\vspace{-1cm}\begin{center} {\footnotesize \em Received: \@received ; Revised: \@revised ; %%@
+Accepted: \@accepted} \end{center}}
+\newcommand{\datesRA}{\vspace{-1cm}\begin{center} {\footnotesize \em Received: \@received ; Accepted: \@accepted} %%@
+\end{center}}
+
+%Definieer 'n nuwe omgewing vir opsomming
+\newenvironment{ops}[1]{
+ \footnotesize
+ \begin{center}%
+  {\bfseries #1 \vspace{-.5em}\vspace{\z@}}%
+ \end{center}%
+ \begin{center}\begin{minipage}{13cm} \hspace{-1.5mm}}
+ {\end{minipage} \end{center}}
+
+%Maak abstract
+\newcommand\abst{Abstract}
+\newenvironment{Abstract}{\begin{ops}{\abst}\noindent}{\end{ops}}
+
+%Maak opsomming
+\newcommand\opsom{Opsomming}
+\newenvironment{opsomming}{\begin{ops}{\opsom}\noindent}{\end{ops}}
+
+%Maak Sleutelwoorde
+\newcommand\sleut{Sleutelwoorde}
+\newenvironment{sleutelwoorde}{\footnotesize {\bf \sleut: \ \ }}{\vspace*{-0.2cm}}
+
+%Maak Key words
+\newcommand\keywordsname{Key words}
+\newenvironment{keywords}{\footnotesize {\bf \keywordsname: \ \ }}{\vspace*{-0.2cm}}
+
+%Definieer 'n nuwe omgewing vir bewyse
+\newenvironment{proof}{\vspace*{2mm plus 1pt} {\bf Proof:}\ \ }{\vspace*{2mm plus 1pt}}
+\newenvironment{bewys}{\vspace*{2mm plus 1pt} {\bf Bewys:}\ \ }{\vspace*{2mm plus 1pt}}
+
+%Maak running heads
+\def\shortauthor#1{\gdef\@shortauthor{#1}}
+\def\shorttitle#1{\gdef\@shorttitle{#1}}
+\renewcommand{\ps@plain}{\let\@mkboth\@gobbletwo%
+  \renewcommand{\@oddhead}{}%
+  \renewcommand{\@evenhead}{}%
+  \renewcommand{\@evenfoot}{\hfil\footnotesize\textrm{\thepage}\hfil}%
+  \renewcommand{\@oddfoot}{\@evenfoot}}
+
+    \def\ps@headings{%
+      \let\@oddfoot\@empty\let\@evenfoot\@empty
+      \def\@evenhead{\rlap{\thepage}\hfil\upshape\small \em Authors' identities suppressed: Blind refereeing copy
+       \hfil}%
+      \def\@oddhead{\hbox{}\hfil{\upshape\small \em\@shorttitle}\hfil\llap{\thepage}}% %!
+      \let\@mkboth\markboth
+      \def\sectionmark##1{%
+        \markboth {\uppercase{\ifnum \c@secnumdepth >\z@
+            \thesection.\hskip 1em\relax\fi
+            ##1}}{}}%
+      \def\subsectionmark##1{%
+        \markright {\ifnum \c@secnumdepth >\@ne
+            \thesubsection\hskip 1em\relax \fi
+            ##1}}}
+
+\def\ps@myheadings{%
+    \let\@oddfoot\@empty\let\@evenfoot\@empty
+    \def\@evenhead{\rlap{\thepage}\hfil\upshape\small\em Authors' identities suppressed: Blind refereeing copy
+    \hfil}%!
+    \def\@oddhead{\hbox{}\hfil{\upshape\small\em\@shorttitle}\hfil\llap{\thepage}}% %!
+    \let\@mkboth\@gobbletwo
+    \let\sectionmark\@gobble
+    \let\subsectionmark\@gobble
+    }
+
+%Maak oriontitel
+\newcommand\oriontitle{\par
+  \begingroup
+    \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+    \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+    \long\def\@makefntext##1{\parindent 1em\noindent
+            \hb@xt@1.8em{%
+                \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+    \if@twocolumn
+      \ifnum \col@number=\@ne
+        \@maketitle
+      \else
+        \twocolumn[\@maketitle]%
+      \fi
+    \else
+      \newpage
+      \global\@topnum\z@   % Voorkom dat figure tot voor die titel geskuif word.
+      \@maketitle
+    \fi
+    \thispagestyle{plain}\@thanks
+  \endgroup
+  \setcounter{footnote}{0}%
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\@maketitle\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax
+}
+\def\@maketitle{%
+  %\cleardoublepage
+  \thispagestyle{plain}
+  %\null
+  %\vskip 2em%
+  \raisebox{1.2cm}{\begin{minipage}{2cm}
+  \footnotesize \begin{tabular}{l} \hline \hline
+   Operations\\ Research\\ Society of\\
+  South Africa \rule{1mm}{0mm}\\  \hline \hline
+  \end{tabular} \end{minipage}}
+  \hfill
+  \raisebox{1.2cm}{\begin{tabular}{c}
+  {\footnotesize Submitted}\\
+  {\footnotesize for publication in} \\
+  {\footnotesize ORiON}
+  \end{tabular}}
+  \hfill
+  \raisebox{1.2cm}{\begin{minipage}{2cm}
+  \footnotesize  \begin{tabular}{r} \hline \hline
+   Operasionele\\ Navorsings-\\ vereniging van\\ Suid-Afrika\\ \hline \hline
+  \end{tabular} \end{minipage}} \hspace{1mm} \\
+  %\vspace*{-0.2cm}
+  \begin{center}%
+    \let \footnote \thanks
+    {\huge \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        Authors' identities suppressed: Blind refereeing copy
+      \end{tabular}\par}%
+    %\vskip 1em%
+    %{\large }%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+
+%Maak bold in Wiskunde
+\def\bold#1{\mbox{\boldmath$#1$\unboldmath}}
+\def\Bold#1{\mbox{\boldmath$\displaystyle #1$\unboldmath}}
+
+
+%\renewcommand\section{\@startsection{section}{1}{\z@}%
+%                       {-18\p@ \@plus -4\p@ \@minus -4\p@}%
+%                       {12\p@ \@plus 4\p@ \@minus 4\p@}%
+%                       {\normalfont\large\bfseries\boldmath
+%                        \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {1.5ex \@plus .1ex}%
+                                   {\normalfont\Large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {.1ex \@plus .1ex}%
+                                     {\normalfont\large\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {.1ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {3.25ex \@plus1ex \@minus.2ex}%
+                                    {-1em}%
+                                    {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                       {3.25ex \@plus1ex \@minus .2ex}%
+                                       {-1em}%
+                                      {\normalfont\normalsize\bfseries}}
+
+%Kies die regte blasyopskrifte
+\pagestyle{myheadings}
+
+%Figuur se opskrif
+\setlength\abovecaptionskip{-5\p@}
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{{\bf #1:} {\small \sl #2}}%
+  \ifdim \wd\@tempboxa >\hsize
+    {\bf #1:} {\small \sl #2}\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+
+%Maak onderkante gelyk
+\flushbottom
+
+%Maak die opskrifte skoon:
+\received{??Geen datum??}
+\revised{??Geen datum??}
+\accepted{??Geen datum??}
+\shorttitle{??Geen verkorte titel??}
+\shortauthor{??Geen verkorte outeurs??}
+\volume{??Geen volume??}
+\vnumber{??Geen nommer??}
+\pages{??Geen bladsye??}
+
+\renewcommand\appendix{\par
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \gdef\thesection{Appendix~\@Alph\c@section:}}
