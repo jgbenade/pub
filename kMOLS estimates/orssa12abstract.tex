@@ -5,7 +5,7 @@
 \usepackage[lotdepth]{subfig}
 \usepackage[ ruled,linesnumbered,  vlined]{algorithm2e}
 \usepackage{pgfplots, wrapfig}
-\usepackage[useprefix=true,maxnames=99, style=orion]{biblatex}
+%\usepackage[useprefix=true,maxnames=99, style=orion]{biblatex}
 
 
 
@@ -65,7 +65,7 @@ expressed and conclusions arrived at, are those of the author and are not necess
 
 %==============
 
-\lat s and sets of \emph{mutually orthogonal \lat s} (MOLS) have  application in various scheduling problems, from providing effective ways to access parallel memory structures to scheduling transmissions from sensor arrays. MOLS  also play an important role in sports tournament scheduling where every structurally different MOLS provides the scheduler with an additional degree of scheduling freedom. The existence of MOLS have been resolved for all orders of \lat s, except for order 10. We consider a backtracking algorithm for the enumeration of structurally different MOLS which partitions the search space in such a way that it is possible to estimate bounds for the enumeration of higher-order MOLS. A contribution towards the celebrated question of the existence of a 3-MOLS of order 10 is made by investigating the feasibility of using this algorithm in conjunction with  specific computing paradigms in search of such a design. 
+\lat s and sets of $k$ \emph{mutually orthogonal \lat s} ($k$-MOLS) have  application in various scheduling problems, from providing effective ways to access parallel memory structures to scheduling transmissions from sensor arrays. MOLS  also play an important role in sports tournament scheduling where every structurally different MOLS provides the scheduler with an additional degree of scheduling freedom. The existence of $3$-MOLS have been resolved for all orders of \lat s, except for order 10. We consider a backtracking algorithm for the enumeration of structurally different MOLS which partitions the search space in such a way that it is possible to estimate bounds for the enumeration of higher-order MOLS. A contribution towards the celebrated question of the existence of a 3-MOLS of order 10 is made by investigating the feasibility of using this algorithm in conjunction with  specific computing paradigms in search of such a design. 
 \end{Abstract}
 
 \begin{keywords} 
@@ -119,12 +119,12 @@ Latin squares were first formally defined by Leonard Euler when he considered th
 The notion of orthogonality may be generalised to sets of $k$ \emph{mutually orthogonal Latin squares}, abbreviated to $k$-MOLS, which have the property that any two distinct \lat s in the $k$-MOLS $\mathcal{ M} = \{\l_0, \l_1, \ldots, \l_{k-1}\}$ are pairwise orthogonal. The set $\mathcal{M}_1^*= \{$\lref{l1}, \lref{l2}$\}$ is therefore an example of a $2$-MOLS of order $4$, while the set $\mathcal{M}_2^* = \{$\lref{l1}, \lref{l2}, \lref{l3}$\}$ is a 3-MOLS of order $4$.
  
 
-It has been shown that $k$-MOLS  have important applications in coding theory \cite{laywine}, various subfields of statistics (including experimental design)   \cite{fisher1, fisher2}, distributed database systems \cite{Abdel} and numerous scheduling problems,
+It has been shown that $k$-MOLS  have important applications in coding theory \cite{laywine}, various subfields of statistics (including experimental design)   \cite{fisher1, fisher2}, distributed database systems \cite{Abdel} and numerous scheduling
 \begin{wraptable}{r}{52mm}
 \begin{tabular}{lrrrrrr}
 \toprule
  $n$ &  \multicolumn{6}{c}{$k$}\\ \cmidrule(lr){2-7}
- &  \multicolumn{1}{r}{2} & \multicolumn{1}{r}{3} &\multicolumn{1}{r}{4} & \multicolumn{1}{r}{5} & \multicolumn{1}{r}{6} & \multicolumn{1}{r}{7} \\ \midrule \midrule
+ &  \multicolumn{1}{r}{2} & \multicolumn{1}{r}{3} &\multicolumn{1}{r}{4} & \multicolumn{1}{r}{5} & \multicolumn{1}{r}{6} & \multicolumn{1}{r}{7} \\ \midrule 
 %Level 0 & 45 & 259 & 259 & 259 & 1700 & 1700 & 1700 \\ 
   3 & 1 &   &    &     &    &       \\ 
   4 & 1 & $1$ &    &     &    &       \\ 
@@ -133,23 +133,22 @@ It has been shown that $k$-MOLS  have important applications in coding theory \c
   7 & 7 & $1$ & $1$  & $1$   & $1$  &      \\ 
   8 & $2\,165$ & $39$ & $1$  & $1$   & $1$  & $1$    \\ \bottomrule \smallskip
 \end{tabular}
-\caption{The number of structurally different $k$-MOLS of order $n$ for $n=\{3, 4,\ldots, 8$\}.}
+\caption{The number of structurally different $k$-MOLS of order $n$ for $n \in \{3, 4,\ldots, 8$\}.}
 \label{known}
-\end{wraptable}  
-including the scheduling  of sports tournaments  \cite{keedwell2000designing,kidd2010tabu,robinson}.  Moreover,  every  structurally different set  of orthogonal \lat s provides  the scheduler with an alternative schedule, and some these schedules may be more desirable than others due to \emph{ad hoc} constraints or preferences in the scheduling problem. The known number of structurally different $k$-MOLS for order $n\in\{3,4,\ldots, 8\}$ appear in Table \ref{known}. Additionally, it is known that there are 19 structurally different 8-MOLS of order 9 \cite{owens1995complete} and that no $k$-MOLS of order 10 exists for $k\in \{7,8,9 \}$ \cite{dukes2012group, lam1989non}.
+\end{wraptable}   problems, including the scheduling  of sports tournaments  \cite{keedwell2000designing,kidd2010tabu,robinson}. Moreover,  every  structurally
+     different set  of orthogonal \lat s provides  the scheduler with an alternative schedule, and some of these schedules may be more desirable than others due to \emph{ad hoc} constraints or preferences in the scheduling problem. The known number of structurally different $k$-MOLS for order $n\in\{3,4,\ldots, 8\}$ appear in Table \ref{known}. Additionally, it is known that there are 19 structurally different 8-MOLS of order 9 \cite{owens1995complete} and that no $k$-MOLS of order 10 exists for $k\in \{7,8,9 \}$ \cite{dukes2012group, lam1989non}.
 
-The objective in this paper is to consider an algorithm for the enumeration of structurally different $k$-MOLS of order $n$, demonstrating  the correctness of this algorithm by replicating the known results in Table \ref{known} and to produce estimates of the sizes of  the search spaces for $3$-MOLS of orders 9 and 10, which are yet to be enumerated. These estimates should shed light on the current and short-term future feasibility of any further enumeration attempts.
+The objective in this paper is to consider an algorithm for the enumeration of structurally different $k$-MOLS of order $n$, demonstrating  the correctness of this algorithm by replicating the known results in Table \ref{known} and to produce estimates of the sizes of  the search spaces for $3$-MOLS of orders 9 and 10, which are yet to be enumerated. These estimates should shed light on the current and short-term future feasibility of any further enumeration attempts using this approach.
 
 \section{Mathematical preliminaries}
 
-Let $S(\l)$ denote the symbol set of a \lat \ $\l$ and let $R(\l)$ and $ C(\l)$ denote its row and column indexing sets, respectively.   For any $i \in R(\l)$ and $j \in C(\l)$, let $\l(i,j) \in S(\l)$   denote the element in the $i$-th row and the $j$-th column of $\l$. In the remainder of this paper it is assumed, without any subsequent loss of generality, that  $R(\l)= C(\l)=S(\l) = \mathbb{Z}_n$, the set of residues of the integers after division by the natural number $n$. The \emph{transpose} of $\l$, denoted $\l^T$, is the \lat \ for which $\l^T(j,i) = \l(i,j)$ for all $i\in R(\l)$ and $j\in C(\l)$. Note, for example, that example, \lref{l1}$^T =$\lref{l4}.%  and   $\l^T$ is also a \emph{conjugate} of $\l$. 
+Let $S(\l)$ denote the symbol set of a \lat \ $\l$ and let $R(\l)$ and $C(\l)$ denote its row and column indexing sets, respectively.   For any $i \in R(\l)$ and $j \in C(\l)$, let $\l(i,j) \in S(\l)$   denote the element in the $i$-th row and the $j$-th column of $\l$. In the remainder of this paper it is assumed, without any subsequent loss of generality, that  $R(\l)= C(\l)=S(\l) = \mathbb{Z}_n$, the set of residues of the integers after division by the natural number $n$. The \emph{transpose} of $\l$, denoted $\l^T$, is the \lat \ for which $\l^T(j,i) = \l(i,j)$ for all $i\in R(\l)$ and $j\in C(\l)$. Note, for example, that example, \lref{l1}$^T =$\lref{l4}.%  and   $\l^T$ is also a \emph{conjugate} of $\l$. 
+
+The notion of a universal was introduced by Burger \emph{et al.} \cite{burger2010} in 2010 to facilitate the enumeration of specific classes of \lat s . A \emph{universal}  of a \lat \ $\l$ is a set of $n$ distinct, ordered pairs $(i,j)$, one from each row and column, containing only one symbol. Universals may be expressed in permutation form such that the \emph{universal permutation $u_{\ell}$ of the symbol $\ell$} maps $ i $ to $j $ if $\l(i,j) = \ell$ and, as such, it is possible to find the cycle structure and inverse of any universal. The \emph{relative cycle structure} of any pair of universals $u_1$ and $u_2$ of the same order is defined to be the cycle structure of $u_2\, \circ \, u_1^{-1}$. 
+In \lref{l2}, for example,  the entries in boldface correspond to the universal $\{(0,1), (1,3), (2, 2), (3, 0)\}$ of the symbol $1$, which may be written in permutation notation as $\binom{0\ 1\ 2\ 3}{1\ 3\ 2\ 0}$, abbreviated here as $\langle1320\rangle$. Let $U(\m)$ denote the set of universal permutations of some $k$-MOLS $\m$, and let $u_{\ell}(m)\in U(\m)$ denote the universal permutation of the symbol $\ell$ in the $m$-th square $\l_m \in \m$. The set of all universals of $\m_1^*$ is therefore $U(\m_1^*) = \{\langle 0312 \rangle, \langle 1203 \rangle, \langle 2130 \rangle, \langle 3021 \rangle,\langle 0231 \rangle,\langle 1320 \rangle, \langle 2013 \rangle, \langle 3102 \rangle \}$, while the universal permutation of the symbol 2 in the third \lat \ of $\m_2^*$ is $u_2{(2)} = \langle 2301 \rangle$. The relative cycle structure of $u_0(1)\in U(\m_1^*)$ and $u_3(0) \in U(\m_1^*)$ is the cycle structure of the permutation $ \langle 3021 \rangle \circ \langle 0231 \rangle^{-1} = \langle 2013 \rangle$, which may be denoted as $z_1^1z_3^1$ as it consists of one cycle of length 1 and one cycle of length 3.
 
 
-
-The notion of a universal was introduced by Kidd \emph{et al.} \cite{Kidd2012} in 2012 to facilitate the enumeration of specific classes of \lat s . A \emph{universal}  of a \lat \ $\l$ is a set of $n$ distinct, ordered pairs $(i,j)$, one from each row and column, containing only one symbol. Universals may be expressed in permutation form such that the \emph{universal permutation $u_{\ell}$ of the symbol $\ell$} maps $ i $ to $j $ if $\l(i,j) = \ell$ and, as such, it is possible to find the cycle structure of any universal, as well as the relative cycle structure of any pair of universals of the same order. In \lref{l2}, for example,  the entries in boldface correspond to the universal $\{(0,1), (1,3), (2, 2), (3, 0)\}$ of the symbol $1$, which may be written in permutation notation as $\binom{0\ 1\ 2\ 3}{1\ 3\ 2\ 0}$, abbreviated here as $\langle1320\rangle$. Let $U(\m)$ denote the set of universal permutations of some $k$-MOLS $\m$, and let $u_{\ell}(m)\in U(\m)$ denote the universal permutation of the symbol $\ell$ in the $m$-th square $\l_m \in \m$. The set of all universals of $\m_1^*$ is therefore $U(\m_1^*) = \{\langle 0312 \rangle, \langle 1203 \rangle, \langle 2130 \rangle, \langle 3021 \rangle,\langle 0231 \rangle,\langle 1320 \rangle, \langle 2013 \rangle, \langle 3102 \rangle \}$, while the universal permutation of the symbol 2 in the third \lat \ of $\m_2^*$ is $u_2{(2)} = \langle 2301 \rangle$.
-
-
-\lat s which can be generated from one another by changing the order of their rows or columns, or by renaming their symbols, are said to be \emph{isotopic},  while \lat s formed by uniformly applying a permutation to all $n^2$ $3$-tuples $(i,j, \l(i,j))$ are called \emph{conjugates}. For example, applying the permutation $\binom{0 \ 1 \ 2}{1\ 0\ 2}$ to the $3$-tuple $(i,j, \l(i,j))$ yields the transpose $(j,i, \l(i,j))$ of $\l$. 
+\lat s which can be generated from one another by changing the order of their rows and/or columns, and/or by renaming their symbols, are said to be \emph{isotopic},  while \lat s formed by uniformly applying a permutation to all $n^2$ $3$-tuples $(i,j, \l(i,j))$ are called \emph{conjugates}. For example, applying the permutation $\binom{0 \ 1 \ 2}{1\ 0\ 2}$ to the $3$-tuple $(i,j, \l(i,j))$ yields the transpose $(j,i, \l(i,j))$ of $\l$. 
 A maximal  set of isotopic \lat s, together with all their conjugates, form a \emph{main class} of \lat s.  It is possible to show that \lref{l1}, \lref{l2}, \lref{l3} and \lref{l4} are all in the same main class by reordering the rows of \lref{l1} to find \lref{l2}, transposing \lref{l1} to form \lref{l4} and,  finally, reordering the columns of \lref{l4} to form \lref{l3}.
 %The order of the rows of \lref{l1}, for example, may be changed to form \lref{l2}, similarly,. It is possible the rename the symbols of \lref{l2} to find \lref{l3} and   show that \lref{l1}, \lref{l2} and \lref{l3} are isotopic and in the same main class.
 
@@ -157,10 +156,9 @@ The notions of    isotopic and  conjugate \lat s as well as that of main classes
 
 It is possible to define a \emph{lexicographical ordering}, denoted by the symbol $\prec$,  on a main class of $k$-MOLS by comparing the universals lexicographically in such a way that every main class has a unique smallest element, called the \emph{class representative}. 
 Two $k$-MOLS, $\m$ and $\m'$ are ordered in this way by 
-comparing corresponding universals, starting with $u_0{(0)}\in U(\m)$ and ${u'}_0{(0)}\in U(\m')$, followed 
-by $u_0{(1)} \in U(\m)$ and ${u'}_0{(1)}\in U(\m')$, \emph{etc.}\ until 
+comparing corresponding universals, starting with $u_0{(0)}\in U(\m)$ and ${u}_0^{\prime}{(0)}\in U(\m')$, followed 
+by $u_0{(1)} \in U(\m)$ and ${u}_0^{\prime}{(1)}\in U(\m')$, \emph{etc.}\ until 
 it is either found that the one $k$-MOLS is lexicographically smaller than the other, or until all universals have been compared, in which case $\m$ and $\m'$ are lexicographically equal and therefore the same $k$-MOLS. For example, when comparing the two $2$-MOLS $\m^*=\{\l_1^*, \l_2^*\}$ and $\m^{*\prime}=\{\l_1^*, \l_4^*\}$ of order 4, it is seen that $u_0{(0)} ={u}_0^{\prime}{(0)}$,  $u_0{(1)} ={u}_0^{\prime}{(1)}$ and $u_1{(0)} ={u}_1^{\prime}{(0)}$ but  $u_1{(1)} = \langle 1320\rangle \prec {u}_1^{\prime}{(1)} =\langle 2013\rangle$, implying that $\m^* \prec \m^{*\prime}$.
-
 
  
 \section{Exhaustive enumeration of $k$-MOLS}
@@ -182,7 +180,7 @@ universals and whose \lat s $\l_{m+1}, \ldots, \l_{k}$ each contains $i$ univers
 	}{return}
 }
 \For{\emph{every candidate universal $c$}}{
-	\If{\emph{$c$ preserves orthogonality and is valid by Theorem 1(c)}}{
+	\If{\emph{$c$ preserves orthogonality and is valid by Theorem 1 (c)}}{
 		\If{\emph{$\p\cup c$ has no smaller isotopic $k$-MOLS}}{
 		enumerateMOLS($\p\cup c$)	}
 	} 
@@ -197,9 +195,9 @@ Suppose that the partial $k$-MOLS, $\mathcal{P}$, has been constructed on level 
 
 To verify orthogonality in a child $ \p \cup c$ of $\p$, for some candidate universal $c \in \mathcal{C}(\p)$, it is necessary to confirm that the relative cycle structure of  $c$ and every permutation $p\in  U(\p_{\ell+1})$ has exactly one fixed point. The following result by Kidd \emph{et al.} \cite[Theorem 4.3.2]{Kidd2012} provide an easy way of determining whether a partial $k$-MOLS  $\m$ is the lexicographically smallest partial $k$-MOLS in its main class.
 \begin{theorem}{\cite[Theorem 4.3.2]{Kidd2012} }
-If $\m= (\l_0,     \ldots, \l_{k-1})$ is the lexicographically smallest $k$-MOLS of order $n$ in its main class, then (1) $u_0{(0)}$ is the identity permutation, (2) $u_0{(1)}$ is a cycle structure representative, and (3) the relative cycle structure of two universal permutations $u_i{(j)}, u_{\ell}{(m)}$ is not {lexicographically} smaller than the cycle structure of $u_0{(1)}\in U(\m)$ for all $i, j \in \mathbb{Z}_n$ and $j, m\in \mathbb{Z}_n$.
+If $\m= (\l_0,     \ldots, \l_{k-1})$ is the lexicographically smallest $k$-MOLS of order $n$ in its main class, then (a) $u_0{(0)}$ is the identity permutation, (b) $u_0{(1)}$ is a cycle structure representative, and (c) the relative cycle structure of two universal permutations $u_i{(j)}, u_{\ell}{(m)}$ is not {lexicographically} smaller than the cycle structure of $u_0{(1)}\in U(\m)$ for all $i, j \in \mathbb{Z}_n$ and $j, m\in \mathbb{Z}_n$.
 \end{theorem}
-According to Theorem 1 (a) and (b) there is a very limited number of feasible zero universals in $\l_0$ and $\l_1$, and by Theorem 1 (c) none of the relative cycle structures calculated whilst verifying orthogonality may be smaller than the cycle structure of $u_0{(1)}$ if $\p \cup c$ is to be the lexicographically smallest partial $k$-MOLS in its main class.
+According to Theorem 1 (a) and (b) there is a very limited number of feasible zero universals in $\l_0$ and $\l_1$, and by Theorem 1 (c) no  relative cycle structure calculated while verifying orthogonality may be smaller than the cycle structure of $u_0{(1)}$ if $\p \cup c$ is to be the lexicographically smallest partial $k$-MOLS in its main class.
 %Once it is confirmed that the candidate universal $u_i^{(\ell)}$ is orthogonal to all the existing universals and that it does not lead to a smaller relative cycle structure than the cycle structure of $u_0^{(1)}$, 
  
  \begin{figure}[b!]
@@ -217,13 +215,10 @@ For a completed $k$-MOLS $\p$, on  level $n-1$, the mappings and transformations
 
 
 
-This enumeration process for 2-MOLS of order 5 is represented as an example in Figure \ref{figtree} (the same example may be found in \cite{Kidd2012}).  According to Theorem 1, $u_0{(0)}$ must be the identity permutation and $u_0{(1)}$ a cycle structure representative, of which there are two possibilities for order 5, namely $z_1z_2^2$ and $z_1z_4$ (note that there must be exactly one 1-cycle to ensure orthogonality with the identity permutation).  Two partial $k$-MOLS are said to be in the same \emph{section} of the search tree if the respective $u_0{(1)}$ universals are the same cycle structure representative; the enumeration of $2$-MOLS of order 5 therefore consists of two sections.
+This enumeration process for 2-MOLS of order 5 is represented  in Figure \ref{figtree} (the same example may be found in \cite{Kidd2012}).  According to Theorem 1, $u_0{(0)}$ must be the identity permutation and $u_0{(1)}$ a cycle structure representative, of which there are two possibilities for order 5, namely $z_1z_2^2$ and $z_1z_4$ (note that there must be exactly one 1-cycle to ensure orthogonality with the identity permutation).  Two partial $k$-MOLS are said to be in the same \emph{section} of the search tree if the respective $u_0{(1)}$ universals are the same cycle structure representative; the enumeration of $2$-MOLS of order 5 therefore consists of two sections.
 Where branches become inactive it is indicated that either (a) no candidate universals preserve orthogonality,  (b) a lexicographically smaller partial MOLS has been found in the same main class, or   (c) a class representative had been found. 
-One 2-MOLS is found in the section of $z_1z_1^2$ and no structurally different $2$-MOLS is found  in the section of $z_1z_4$,  although a completed candidate 2-MOLS is uncovered which, upon inspection, is shown to be in the same main class as the first one, but lexicographically larger than that 2-MOLS.
- 
-The known results in Table \ref{known} were replicated in a validation attempt and details on the enumeration results for $3$-MOLS of order 8 are given in Table \ref{83}. The number of active nodes found  on every level is identical to that found by Kidd \cite{Kidd2012} in 2012, while the serialized runtime has been improved from approximately 36 days to just under 10 days, although this improvement may be partially due to the use of different computing platforms. There are 45 active nodes on level 0 (after all of the zero universals have been inserted  and an \iis test has been performed) and these nodes were given as the starting positions from which all of the subtrees were enumerated. It was found that there are 259 and $1\,700$ active nodes on level 0 of the search trees for orders 9 and 10, which may be partitioned into 7 and 8 sections, respectively. Interestingly, the runtime increased from 6 seconds for the enumeration of $3$-MOLS of order 7 to just under 10 days for the $3$-MOLS of order  8, raising serious concerns over the feasibility of enumeration $3$-MOLS of order 9 and higher. 
-
- \begin{table}[h]
+One 2-MOLS is found in the section of $z_1z_1^2$ and no structurally different $2$-MOLS is found  in the section of $z_1z_4$,  although a completed candidate 2-MOLS is uncovered which, upon inspection, is shown to be in the same main class  as the first one but lexicographically larger.
+  \begin{table}[b]
  \centering
 \begin{tabular}{crrrrrrrrr}
 \toprule
@@ -239,6 +234,9 @@ Total &45 & $15\,948\,763$ & $1\,546\,241\,258$ & $318\,877\,734$ & 216 & 168 & 
 \caption{The number of active nodes in every section and on every level of the search tree for enumerating   3-MOLS of order 8, together with the time in seconds that the enumeration of every section took on a 3.2~GHz processor with 8 Gb of RAM.}
 \label{83}
 \end{table}
+The known results in Table \ref{known} were replicated in a validation attempt and details on the enumeration results for $3$-MOLS of order 8 are given in Table \ref{83}. The number of active nodes found  on every level is identical to that found by Kidd \cite{Kidd2012}%in 2012
+, while the serialized runtime has been improved from approximately 36 days to just under 10 days, although this improvement may be partially due to the use of different computing platforms. There are 45 active nodes on level 0 (after all of the zero universals have been inserted  and an \iis test has been performed) and these nodes were given as the starting positions from which all of the subtrees were enumerated. It was found that there are 259 and $1\,700$ active nodes on level 0 of the search trees for orders 9 and 10, which may be partitioned into 7 and 8 sections, respectively. Interestingly, the runtime increased from 6 seconds for the enumeration of $3$-MOLS of order 7 to just under 10 days for the $3$-MOLS of order  8, raising serious concerns over the feasibility of the enumeration $3$-MOLS of order 9 and higher. 
+
 
 \section{On the enumerability of larger order search spaces}
 In order to determine the feasibility of enumerating   $3$-MOLS of orders 9 and 10, the algorithm was modified so that it only examines MOLS that are isotopic to a partial MOLS $\p$ after universals of the $i$-th symbol have been inserted into every \lat \ in $\p$. Although this increases the total number of branches of the search tree that survive  to level $i$, it decreases the total number of \iis tests performed during the enumeration, as all branches that would otherwise have been pruned earlier must necessarily have been subjected to at least one \iis test. Furthermore, the effect on the search tree as a whole is minimised, as the exact same number of branches will pass the \iis and proceed to the next symbol. The sizes of the subsequent search trees for orders 9 and 10 were approximated by estimating the total number of nodes in the absence of the \iis test before applying the expected pruning effect of the \iis test to determine the number of active nodes on every level of the tree. Finally, a small number of nodes from one of these levels were used as starting points for the enumeration algorithm so that the the total time it would take to traverse the entire trees could be estimated.
@@ -289,26 +287,9 @@ In order to determine the feasibility of enumerating   $3$-MOLS of orders 9 and 
 \end{tikzpicture}
 \end{minipage} \vspace{.2cm}
  \caption{The average number of feasible candidate universals $u_i{(j)}$ found for $i = 1,2$ and $j\in \mathbb{Z}_k$ in the enumeration of $3$-MOLS of order $8$ for each of the 45 partial $3$-MOLS which pass the \iis test on level 0 of the search tree. The dashed lines indicate in which section the starting position resides, \emph{i.e.} whether the permutation $u_0{(1)}$ in the initial partial $3$-MOLS has the cycle structure $z_1z_2^2z_3, z_1z_2z_5, z_1z_3z_4$ or $z_1z_7$, in that order. }\label{figunis}\end{figure}
-The enumeration tree for $3$-MOLS of order 8 was also traversed to determine the average number of universals that preserve orthogonality and are valid by Theorem 1(c), \emph{i.e.} the universals that pass the test on line 9 of Algorithm \ref{Alg:enumerate}, for partial $3$-MOLS on different levels of the search tree.
+The enumeration tree for $3$-MOLS of order 8 was also traversed to determine the average number of universals that preserve orthogonality and are valid by Theorem 1 (c), \emph{i.e.} the universals that pass the test on line 9 of Algorithm \ref{Alg:enumerate}, for partial $3$-MOLS on different levels of the search tree.
 %By enumerating the $3$-MOLS of order 8 in this way it was possible to determine the average number universals that preserve orthogonality and is valid by Theorem 1(3). 
-It was found that that this average number of feasible candidate universals, which corresponds to the number of children of a node representing any partial $3$-MOLS  on level $i.\ell$ for $\ell \in \mathbb{Z}_{k-1}$,  depends sensitively on the cycle structure of $u_0{(1)}$, but remains largely constant within a given section of the tree.  Evidence of this may be seen for the 45 active nodes on level 0 of the enumeration tree for $3$-MOLS of order $8$ in  Figure \ref{figunis} for the two sets of universals $u_1{(j)}$ and $u_2{(j)}$ with $j\in \mathbb{Z}_k$. Notice in the figure, that the average number of feasible candidate solutions decreases with every additional universal in $\p$ as it becomes harder to preserve orthogonality.  This  regularity in the number of children of a node of the search tree, as well as its sensitive dependence on the cycle structure of $u_1{(0)}$ was also observed in the search trees for $3$-MOLS of orders $7$, $9$ and $10$. 
 
-These properties make it possible to estimate the average number of children of any partial $3$-MOLS by only examining a very small random selection of partial $3$-MOLS that are on the same level and in the same section of the tree. This process was repeated on every level  of the tree in order to estimate the total number 
-%  \begin{wraptable}{r}{105mm}
-%  \begin{tabular}{lrrrr}
-%\toprule
-%&  \multicolumn{4}{c}{$n$} \\
-% & \multicolumn{1}{c}{8 - Actual}  & \multicolumn{1}{c}{8 - Est.} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} \\ \midrule\midrule 
-%%Level 0 & \textbf{} & \multicolumn{1}{l}{\textbf{}}  & \multicolumn{1}{l}{\textbf{}} & \multicolumn{1}{l}{\textbf{}} \\ 
-%Level 1 & \multicolumn{1}{r}{\textbf{$2.61\times 10^7$}} & $2.60\times 10^7$ &   $5.79\times 10^{10}$ & $2.41\times 10^{14}$ \\ 
-%Level 2 & \textbf{$4.34 \times 10^9$} & $3.74\times 10^9$ &    $3.39\times 10^{15}$ & $9.67\times 10^{21}$ \\ 
-%Level 3 & \textbf{$9.96\times 10^8$} & $9.31\times 10^8$ &    $2.15\times 10^{16}$ &   \\ \bottomrule
-%\end{tabular} \vspace{.4cm}
-%\caption{A comparison of the actual and estimated total number of nodes on levels 0,1,2 and 3 of the enumeration tree of order 8, together with   estimates of the treefor orders 9 and 10.}
-%\label{totalnodes}
-%\end{wraptable}
-of nodes in the search tree for $3$-MOLS of orders 8, 9 and 10.  This estimate  proved to be fairly accurate for order 8, as may be seen in Table \ref{totalnodes}.
- 
 \begin{table}[b]
 \parbox{105mm}{
 \centering
@@ -339,6 +320,25 @@ Level 2 & 0 & 0.538 & 0.511 \\  \bottomrule
 \label{issm}
 }
 \end{table}
+It was found that that this average number of feasible candidate universals, which corresponds to the number of children of a node representing any partial $3$-MOLS  on level $i.\ell$ for $\ell \in \mathbb{Z}_{k-1}$,  depends sensitively on the cycle structure of $u_0{(1)}$, but remains largely constant within a given section of the tree.  Evidence of this may be seen for the 45 active nodes on level 0 of the enumeration tree for $3$-MOLS of order $8$ in  Figure \ref{figunis} for the two sets of universals $u_1{(j)}$ and $u_2{(j)}$ with $j\in \mathbb{Z}_k$. Notice in the figure, that the average number of feasible candidate solutions decreases with every additional universal in $\p$ as it becomes harder to preserve orthogonality.  This  regularity in the number of children of a node of the search tree, as well as its sensitive dependence on the cycle structure of $u_1{(0)}$ was also observed in the search trees for $3$-MOLS of orders $7$, $9$ and $10$. 
+
+These properties make it possible to estimate the average number of children of any partial $3$-MOLS by only examining a very small random selection of partial $3$-MOLS that are on the same level and in the same section of the tree. This process was repeated on every level  of the tree in order to estimate the total number 
+%  \begin{wraptable}{r}{105mm}
+%  \begin{tabular}{lrrrr}
+%\toprule
+%&  \multicolumn{4}{c}{$n$} \\
+% & \multicolumn{1}{c}{8 - Actual}  & \multicolumn{1}{c}{8 - Est.} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} \\ \midrule\midrule 
+%%Level 0 & \textbf{} & \multicolumn{1}{l}{\textbf{}}  & \multicolumn{1}{l}{\textbf{}} & \multicolumn{1}{l}{\textbf{}} \\ 
+%Level 1 & \multicolumn{1}{r}{\textbf{$2.61\times 10^7$}} & $2.60\times 10^7$ &   $5.79\times 10^{10}$ & $2.41\times 10^{14}$ \\ 
+%Level 2 & \textbf{$4.34 \times 10^9$} & $3.74\times 10^9$ &    $3.39\times 10^{15}$ & $9.67\times 10^{21}$ \\ 
+%Level 3 & \textbf{$9.96\times 10^8$} & $9.31\times 10^8$ &    $2.15\times 10^{16}$ &   \\ \bottomrule
+%\end{tabular} \vspace{.4cm}
+%\caption{A comparison of the actual and estimated total number of nodes on levels 0,1,2 and 3 of the enumeration tree of order 8, together with   estimates of the treefor orders 9 and 10.}
+%\label{totalnodes}
+%\end{wraptable}
+of nodes in the search tree for $3$-MOLS of orders 8, 9 and 10.  This estimate  proved to be fairly accurate for order 8, as may be seen in Table \ref{totalnodes}.
+ 
+
 
 In order to   estimate the number of active nodes on levels 1 and 2 of the search tree, the pruning effect of the \texttt{isSmallest} test must be applied to these estimated total numbers of nodes on every level of the tree. Let $p_i$ denote the percentage of partial $3$-MOLS which pass the \iis test on level $i$. The values of $p_0, \, p_1$ and $p_2$ for orders $6,7$ and 8 may be seen in Table \ref{issm}. Notice that less than 10\% of the  nodes on level 0 are active, and that this value is approximately 50\% for levels 1 and 2. Based on this evidence, the numbers of active nodes on levels 1 and 2 of the search trees for orders 9 and 10 were estimated for three values of $p=p_1=p_2$, specifically $p=0.5$ together with  expected over and under estimate values, $p=0.4$ and $p =0.6$. Note that the pruning effect is carried forward through the tree, \emph{i.e.} if $p=0.5$, then 50\% of  the nodes on level 1 are considered inactive, which implies that half the nodes on level 2 would not have been reached at all so that only 25\% of the total number of nodes on level 2 are considered active.   For order 9 the number of active nodes of level 1 (\emph{i.e.} the number of partial $3$-MOLS with all 0 and 1 universals filled in which pass  the \iis test) is estimated to be between $2.32\times 10^{10}$ and $3.47\times 10^{10}$, depending on the value of $p$, and for order 10 this number grows to approximately $1.21\times 10^{14}$.  The remainder of the estimated numbers of active nodes  may be found in Table \ref{activenodes}. 
 
@@ -379,26 +379,28 @@ GHz-days   & 32& $4.51\times 10^{8}$ & $5.64\times 10^{8}$ & $6.77\times 10^{8}$
 
 The serialized estimated enumeration time on a single 3.2 GHz core of $465\,219$ years for $3$-MOLS of order 9, and $1.17\times 10^{14}$ years for order 10 is currently beyond  the capabilities of most research computing clusters. For example, the high performance cluster, \emph{Rhasatsha}, at Stellenbosch University currently consists of a hundred and thirty six  2.83~Ghz cores, thirty two 2.4~Ghz cores and three hundred and seventy six 2.1~GHz cores for a daily maximum throughput of approximately $1\,250$ GHz-days. The performance of this cluster is dwarfed by, for example, the \emph{Great Internet Mersenne Prime Search} (GIMPS),  a distributed computing project which makes use of volunteers' computing power to find extremely large prime numbers \cite{gimps} and Seti@Home,  a distributed project examining large datasets for signs of extraterrestrial intelligence \cite{seti}. GIMPS has an average daily throughput of approximately $100\,000$ GHz-days \cite{gimps}, while SETI@Home averages   $362\,000$ GHz-days daily \cite{seti}. If the enumeration of $k$-MOLS were to take place with the computing power that is available to these distributed projects, the enumeration of $3$-MOLS of order 9 would take approximately 15.5 years (at $100\,000$ GHz-days daily) and it would be possible to answer the celebrated question of the existence of $3$-MOLS of order 10 in approximately $3.9\times 10^{10}$ years.
 
-The enumeration of $k$-MOLS of order 9 therefore seems to be much more feasible as part of a distributed, volunteer computing project than it does   on a single high performance cluster, while the enumeration of $k$-MOLS of order 10 is, barring significant advances in computing power, not feasible.  To resolve the question of  the existence of $3$-MOLS of order 10, however, it is only necessary to find a single $3$-MOLS, making the estimated enumeration time a worst-case scenario that will only be reached if no $3$-MOLS of order 10 exists.
+The enumeration of $3$-MOLS of order 9 therefore seems to be much more feasible as part of a distributed, volunteer computing project than it does   on a single high performance cluster. The enumeration of $3$-MOLS of order 10, on the other hand, does not seem feasible using this approach, unless a significant technical breakthrough in computing power (such as the establishment of a practically viable quantum computing platform) or an important theoretical breakthrough (such as the design of a very effective pruning rule for the search tree or a speed-up of the \iis test) is made.
+  To resolve the question of  the existence of $3$-MOLS of order 10, however, it is only necessary to find a single $3$-MOLS, making the estimated enumeration time a worst-case scenario that will only be reached if no $3$-MOLS of order 10 exists.
 
  {\footnotesize
 \begin{thebibliography}{xx}
-\bibitem{Abdel}{{\sc Abdel-Ghaffar KAS}, 1996. {\em On the number of mutually orthogonal partial latin squares}, Ars Combinatorica, {\bf 42}, pp. 259--286}
-\bibitem{bose} {{\sc  Bose RC,    Shrikhande SS \&  Parker ET}, 1960. {\em Further results on the construction of mutually orthogonal Latin squares and the falsity of Euler’s conjecture}, Canadian  Journal of  Mathematics {\bf 12}, pp. 189--203.}
-\bibitem{colb}{{\sc Colbourn  CJ and Dinitz  JH}, 2006. {\em Handbook of combinatorial designs}, Chapman \& Hall/CRC, Boca Raton (FL).}
-\bibitem{dukes2012group} {{\sc  Dukes P  \& Howard L}, 2012. {\em Group divisible designs in MOLS of order ten}, Designs, Codes and Cryptography,  pp. 1--9.}
+\bibitem{Abdel}{{\sc Abdel-Ghaffar KAS}, 1996. {\em On the number of mutually orthogonal partial latin squares}, Ars Combinatorica, {\bf 42}, pp. 259--286.}
+\bibitem{bose} {{\sc  Bose RC,    Shrikhande SS \&  Parker ET}, 1960. {\em Further results on the construction of mutually orthogonal Latin squares and the falsity of Euler's conjecture}, Canadian  Journal of  Mathematics {\bf 12}, pp. 189--203.}
+\bibitem{burger2010} {{\sc  Burger AP, Kidd MP \&  van Vuuren JH}, 2010. {\em Enumerasie van self-ortogonale Latynse vierkante van orde 10}, Litnet Akademies (Natuurwetenskappe) {\bf 1(1)}, pp. 1--22.}
+\bibitem{colb}{{\sc Colbourn  CJ \& Dinitz  JH}, 2006. {\em Handbook of combinatorial designs}, Chapman \& Hall/CRC, Boca Raton (FL).}
+\bibitem{dukes2012group} {{\sc  Dukes P  \& Howard L}, 2012. {\em Group divisible designs in MOLS of order ten}, Designs, Codes and Cryptography,  pp. 1--9, [Online], [Cited 2013, June 4\textsuperscript{th}], Available from: {\tt http://link.springer.com/article/10.1007/s10623-012-9729-8}}
 \bibitem{euler} {{\sc Euler, L}, 1782. {\em Recherches sur une nouvelle esp\'ece de quarr\'es magiques}, Verhandelingen uitgegeven door het zeeuwsch Genootschap der Wetenschappen te Vlissingen {\bf 9}, pp. 85--239.}
 \bibitem{fisher1}{\sc Fisher RA}, 1925. {\em Statistical methods for research workers}, Oliver \& Boyd, Edinburgh.
 \bibitem{fisher2}{\sc Fisher RA}, 1935. {\em The design of experiments}, Oliver \& Boyd, Edinburgh.
-\bibitem{keedwell2000designing} {{\sc Keedwell AD}, 2000. {\em Designing Tournaments with the aid of Latin Squares: a presentation of old and new results}, Utilitas Mathematica {\bf 58}, pp. 65--86.}
+\bibitem{keedwell2000designing} {{\sc Keedwell AD}, 2000. {\em Designing tournaments with the aid of Latin squares: A presentation of old and new results}, Utilitas Mathematica {\bf 58}, pp. 65--86.}
 \bibitem{Kidd2012}{{\sc Kidd MP}, 2012. {\em On the existence and enumeration of sets of two or three mutually orthogonal Latin squares with application to sports tournament scheduling}, PhD Dissertation, Stellenbosch University, Stellenbosch.}
 \bibitem{kidd2010tabu} {{\sc Kidd MP}, 2010. {\em A tabu-search for minimising the carry-over effects value of a round-robin tournament}, ORiON {\bf 26(2)}, pp. 125--141.}
 \bibitem{lam1989non} {{\sc  Lam CWH, Thiel L \& Swiercz S}, 1989. {\em The non-existence of finite projective planes of order 10}, Canadian  Journal of  Mathematics {\bf 41(6)}, pp. 1117--1123.}
-\bibitem{laywine}{{\sc Laywine CF and Mullen GL}, 1998. {\em Discrete mathematics using Latin squares}, Wiley, New York (NY).} 
-\bibitem{gimps} {\sc Mersenne Research, Inc.}, 2013. {\em Great Internet Mersenne Prime Search},  June 4\textsuperscript{th}, [Online], [Cited 2013, June 4 \textsuperscript{th}], Available from: {\tt http://www.mersenne.org/}.
-\bibitem{owens1995complete}{\sc Owens  PJ \& Preece  DA}, 1995. {\em Complete sets of pairwise orthogonal latin squares of order 9}, Journal of Combinatorial Mathematics and Combinatorial Computing {\bf 18}, pp. 83--96.
+\bibitem{laywine}{{\sc Laywine CF \& Mullen GL}, 1998. {\em Discrete mathematics using Latin squares}, Wiley, New York (NY).} 
+\bibitem{gimps} {\sc Mersenne Research, Inc.}, 2013. {\em Great Internet Mersenne Prime Search},   [Online], [Cited 2013, June 4\textsuperscript{th}], Available from: {\tt http://www.mersenne.org/}.
+\bibitem{owens1995complete}{\sc Owens  PJ \& Preece  DA}, 1995. {\em Complete sets of pairwise orthogonal Latin squares of order 9}, Journal of Combinatorial Mathematics and Combinatorial Computing {\bf 18}, pp. 83--96.
 \bibitem{robinson}{\sc Robinson DF}, 1981. {\em Constructing an annual round-robin tournament played on neutral grounds}, Mathematics Chronicle {\bf 10}, pp. 73--82.
-\bibitem{seti} {\sc Anderson DP}, 2013. {\em SETI@Home},  June 4\textsuperscript{th}, [Online], [Cited 2013, June 4 \textsuperscript{th}], Available from: {\tt http://setiathome.berkeley.edu/}.
+\bibitem{seti} {\sc Anderson DP}, 2013. {\em SETI@Home},    [Online], [Cited 2013, June 4\textsuperscript{th}], Available from: {\tt http://setiathome.berkeley.edu/}.
  
 \end{thebibliography}}
 
